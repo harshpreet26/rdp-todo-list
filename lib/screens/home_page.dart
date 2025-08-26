@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 //blueprint for task
 class Task {
@@ -108,8 +109,27 @@ class Home_Page extends StatefulWidget {
 }
 
 class Home_PageState extends State<Home_Page> {
+  final TextEditingController nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<TaskProvider>(context, listen: false).LoadTasks();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Text('Hello'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Expanded(child: Image.asset('assets/rdplogo.png')),
+            const Text('Daily Planner'),
+          ],
+        ),
+      ),
+    );
   }
 }
