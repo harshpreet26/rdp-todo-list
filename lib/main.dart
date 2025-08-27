@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (Context) => TaskProvider(),
-    child: const MaterialApp(home: Home_Page()));
+      child: const MaterialApp(home: Home_Page()),
+    );
   }
 }
